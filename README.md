@@ -69,4 +69,3 @@ src/
     todo.py            overview screen
     annotate.py        frame-by-frame review screen
 ```
-# dogma-annotation-helper
