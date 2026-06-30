@@ -1,0 +1,206 @@
+{
+  "_meta": {
+    "description": "Tag taxonomy for the dogma annotation validation helper. Edit this file to add, remove, or re-describe tags. The app reads it at startup. Each section has a 'selection' mode ('single' or 'multi'), a 'validated' flag (when false, any tag value is allowed and no error is flagged), and a 'tags' map of TAG -> human-readable description.",
+    "version": 1
+  },
+  "sections": {
+    "environment": {
+      "label": "Environment",
+      "selection": "single",
+      "validated": true,
+      "tags": {
+        "URBAN": "Cityscape with paved sidewalks, buildings, street signs, urban infrastructure (lamp posts, benches, storefronts)",
+        "TRAIL": "Unpaved natural path, dirt trail, hiking path with trail markers or worn paths through nature",
+        "FOREST": "Dense woodland area with trees as primary feature, natural ground cover (leaves, undergrowth)",
+        "RURAL": "Countryside setting with open fields, farmland, grassland, scattered or no buildings",
+        "INDOOR": "Interior of any building with artificial lighting (stores, offices, homes, malls)",
+        "INTERSECTION": "Street crossing area with at least one of: crosswalk markings, traffic lights, or clear intersection geometry",
+        "PLAYGROUND": "Recreational sports area including basketball courts, soccer fields, tennis courts, or similar athletic facilities",
+        "NONE": "Environment cannot be determined from available visual information"
+      }
+    },
+    "surface_type": {
+      "label": "Surface Type",
+      "selection": "multi",
+      "validated": false,
+      "tags": {}
+    },
+    "environmental_conditions": {
+      "label": "Environmental Conditions",
+      "selection": "multi",
+      "validated": true,
+      "tags": {
+        "WEATHER_RAIN": "Rain falling or wet ground/surfaces indicating recent rain",
+        "WEATHER_SNOW": "Snow on ground or actively falling snow visible",
+        "LIGHTING_LOW": "Dim lighting conditions (dusk, dawn, heavy overcast, or poorly lit area)",
+        "LIGHTING_BRIGHT": "Strong sunlight or bright artificial lighting creating high contrast or glare",
+        "INDOOR": "Interior environment with artificial lighting (store, building, indoor space)",
+        "TRAFFIC_ACTIVE": "Active roadway with moving vehicles visible or audible traffic flow nearby"
+      }
+    },
+    "coarse_activity": {
+      "label": "Coarse Activity",
+      "selection": "multi",
+      "validated": true,
+      "groups": [
+        {"name": "Locomotion", "tags": ["WALKING", "RUNNING", "STATIONARY", "TURNING"]},
+        {"name": "Interaction", "tags": ["HUMAN_DOG_INTERACTION", "SOCIAL_ENCOUNTER", "OBJECT_INTERACTION"]},
+        {"name": "Navigation", "tags": ["CROSSING_STREET", "NAVIGATING_OBSTACLE", "INDOOR_NAVIGATION"]},
+        {"name": "Attention", "tags": ["ENVIRONMENTAL_MONITORING", "DISTRACTION_EVENT"]}
+      ],
+      "tags": {
+        "WALKING": "Handler and dog moving forward together at steady walking pace (not running)",
+        "RUNNING": "Handler and dog moving forward together at running or jogging pace",
+        "STATIONARY": "Both handler and dog are stationary with no forward movement for at least 1-2 seconds",
+        "TURNING": "Team is actively changing direction with visible left or right turn in progress",
+        "HUMAN_DOG_INTERACTION": "Direct physical interaction or feeding between handler and dog (petting, treating, reaching)",
+        "SOCIAL_ENCOUNTER": "Interaction with other people or dogs beyond the handler-dog team",
+        "OBJECT_INTERACTION": "Dog actively interacting with environmental object (water bowl, toy, item on ground)",
+        "CROSSING_STREET": "Team actively crossing street OR stopped at curb preparing to cross",
+        "NAVIGATING_OBSTACLE": "Team maneuvering around or past obstacles, barriers, or constrained spaces",
+        "INDOOR_NAVIGATION": "Team navigating indoor space (store aisles, building interior, hallways)",
+        "ENVIRONMENTAL_MONITORING": "Dog scanning environment with head turning, alert posture, or vigilant behavior",
+        "DISTRACTION_EVENT": "Dog reacting to external stimulus (vehicle, person, animal, loud sound)"
+      }
+    },
+    "fine_grained_activity": {
+      "label": "Fine-Grained Activity",
+      "selection": "multi",
+      "validated": true,
+      "groups": [
+        {"name": "Dog · Body Movement", "tags": ["D_WALKING_FORWARD", "D_RUNNING", "D_STOPPED", "D_LYING_DOWN", "D_BODY_SHAKE"]},
+        {"name": "Dog · Directional Turning", "tags": ["D_TURNING_LEFT_BODY", "D_TURNING_RIGHT_BODY"]},
+        {"name": "Dog · Head Orientation", "tags": ["D_HEAD_LOOKING_LEFT", "D_HEAD_LOOKING_RIGHT"]},
+        {"name": "Dog · Investigation", "tags": ["D_SNIFFING_GROUND", "D_SNIFFING_OBJECT", "D_DRINKING"]},
+        {"name": "Dog · Play", "tags": ["D_PLAY_JUMPING", "D_PLAY_RUNNING", "D_PLAY_BOW", "D_PLAY_ROLLING", "PLAY_CHASE_WITH_DOG", "PLAY_CHEWING_TOY", "PLAY_FETCH_RUNNING", "PLAY_FETCH_RETURNING"]},
+        {"name": "Dog · Leash Dynamics", "tags": ["D_PULLING_FORWARD", "D_RESIST_BACKWARD", "D_LEASH_TAUT", "D_LEASH_SLACK"]},
+        {"name": "Handler Actions", "tags": ["H_PETTING_DOG", "H_GIVING_TREAT", "H_REACHING_FOR_DOG", "H_GESTURING_COMMAND", "H_POINTING"]},
+        {"name": "Other Person", "tags": ["PERSON_PETTING_DOG", "PERSON_FEEDING_DOG", "DOG_SOCIAL_APPROACH"]},
+        {"name": "Dog-to-Dog", "tags": ["DOG_GREETING", "DOG_PLAYING", "DOG_PASSING"]},
+        {"name": "Pedestrian Events", "tags": ["PERSON_APPROACHING_CLOSE", "PERSON_APPROACHING_MEDIUM", "PERSON_APPROACHING_FAR", "PERSON_PASSING_CLOSE", "PERSON_PASSING_MEDIUM", "PERSON_STATIONARY_NEARBY", "CROWD_PRESENT"]},
+        {"name": "Vehicle Events", "tags": ["VEHICLE_APPROACHING", "VEHICLE_PASSING", "VEHICLE_WAITING", "VEHICLE_STOPPED_NEARBY"]},
+        {"name": "Environmental Events", "tags": ["OBSTACLE_IN_PATH", "NARROW_PASSAGE_AHEAD", "DOOR_OPENING"]}
+      ],
+      "tags": {
+        "D_WALKING_FORWARD": "Dog moving forward with steady, rhythmic gait (all four paws progressing forward)",
+        "D_RUNNING": "Dog moving at fast pace with extended stride and increased speed",
+        "D_STOPPED": "Dog is completely stationary with all four paws planted and no movement",
+        "D_LYING_DOWN": "Dog's body is flat on ground in resting position",
+        "D_BODY_SHAKE": "Dog shaking entire body from head to tail (often after getting wet or waking)",
+        "D_TURNING_LEFT_BODY": "Dog's entire body pivoting or rotating to the left (>=45 degree body rotation)",
+        "D_TURNING_RIGHT_BODY": "Dog's entire body pivoting or rotating to the right (>=45 degree body rotation)",
+        "D_HEAD_LOOKING_LEFT": "Dog's head rotated to the left while body continues facing forward (no body turn)",
+        "D_HEAD_LOOKING_RIGHT": "Dog's head rotated to the right while body continues facing forward (no body turn)",
+        "D_SNIFFING_GROUND": "Dog's nose pressed to or very close to ground surface in sniffing behavior",
+        "D_SNIFFING_OBJECT": "Dog's nose directed at and investigating a specific object (pole, wall, bag, fence, etc.)",
+        "D_DRINKING": "Dog actively drinking water from bowl, fountain, or water source (mouth at water, lapping visible)",
+        "D_PLAY_JUMPING": "Dog jumping up and down as part of play behavior (not jumping on person)",
+        "D_PLAY_RUNNING": "Dog running in playful non-linear or linear pattern (zoomies, circling, bouncing, erratic movement)",
+        "D_PLAY_BOW": "Dog in play solicitation posture with front end down and rear end up",
+        "D_PLAY_ROLLING": "Dog rolling onto back or side on ground in playful manner (exposing belly)",
+        "PLAY_CHASE_WITH_DOG": "Dog chasing or being chased by another dog in reciprocal play",
+        "PLAY_CHEWING_TOY": "Dog actively chewing on toy or object with repetitive jaw motion",
+        "PLAY_FETCH_RUNNING": "Dog running toward thrown object (ball, toy, stick) to retrieve it",
+        "PLAY_FETCH_RETURNING": "Dog carrying object in mouth while returning to handler",
+        "D_PULLING_FORWARD": "Dog actively straining forward against leash/harness resistance with forward body lean",
+        "D_RESIST_BACKWARD": "Dog bracing body backward or planting feet against handler's forward pull or direction",
+        "D_LEASH_TAUT": "Visible tension in leash or harness with straight line from handler to dog",
+        "D_LEASH_SLACK": "Leash hanging loosely with visible U-shape or droop, no tension",
+        "H_PETTING_DOG": "Handler touching dog with affectionate stroke or pat",
+        "H_GIVING_TREAT": "Handler offering food treat to dog (hand extended with treat or dog taking treat from hand)",
+        "H_REACHING_FOR_DOG": "Handler extending hand or arm toward dog's body or head",
+        "H_GESTURING_COMMAND": "Handler making hand signal, command gesture, or directive motion with hand/arm to dog",
+        "H_POINTING": "Handler extending arm with finger pointed at specific target or direction",
+        "PERSON_PETTING_DOG": "Someone other than handler is physically petting or touching the dog",
+        "PERSON_FEEDING_DOG": "Someone other than handler offering food or treat to dog",
+        "DOG_SOCIAL_APPROACH": "Dog moves toward a person in friendly manner",
+        "DOG_GREETING": "Dogs sniffing each other in greeting behavior (nose-to-nose or nose-to-body contact)",
+        "DOG_PLAYING": "Dogs engaged in mutual play behavior (play bows, chasing, wrestling)",
+        "DOG_PASSING": "Another dog passing by in close proximity without direct interaction",
+        "PERSON_APPROACHING_CLOSE": "Person walking toward team on path that will pass within 0-1 meters",
+        "PERSON_APPROACHING_MEDIUM": "Person walking toward team on path that will pass within 1-3 meters",
+        "PERSON_APPROACHING_FAR": "Person walking toward team at distance of 3+ meters",
+        "PERSON_PASSING_CLOSE": "Pedestrian passing within 0-1 meters of the team (immediate proximity)",
+        "PERSON_PASSING_MEDIUM": "Pedestrian passing within 1-3 meters of the team",
+        "PERSON_STATIONARY_NEARBY": "Person standing or stationary within 3 meters of team (not moving past)",
+        "CROWD_PRESENT": "Multiple people (4 or more) visible creating dense environment in scene",
+        "VEHICLE_APPROACHING": "Moving vehicle approaching dog's location or path",
+        "VEHICLE_PASSING": "Moving vehicle (car, bus, bicycle, motorcycle) passing nearby the team",
+        "VEHICLE_WAITING": "Team is stopped and waiting for vehicle to pass before proceeding",
+        "VEHICLE_STOPPED_NEARBY": "Parked or stationary vehicle visible in scene",
+        "OBSTACLE_IN_PATH": "Object blocking or partially blocking walking path ahead (pole, sign, barrier, construction)",
+        "NARROW_PASSAGE_AHEAD": "Constrained space requiring navigation is visible ahead (between poles, narrow doorway, between parked cars)",
+        "DOOR_OPENING": "Door being opened by handler or opening automatically"
+      }
+    },
+    "navigation_context": {
+      "label": "Navigation Context",
+      "selection": "multi",
+      "validated": true,
+      "groups": [
+        {"name": "Path Features", "tags": ["NAV_CURB_AHEAD", "NAV_AT_CURB", "NAV_STEPPING_UP", "NAV_STEPPING_DOWN", "NAV_STAIRS_AHEAD", "NAV_OBSTACLE_PRESENT", "NAV_NARROW_SPACE", "NAV_OPEN_SPACE"]},
+        {"name": "Street Crossing", "tags": ["NAV_AT_CROSSWALK", "NAV_CROSSWALK_MARKINGS", "NAV_TRAFFIC_SIGNAL", "NAV_WAITING_TO_CROSS", "NAV_CROSSING_ACTIVE", "NAV_CROSSED_STREET"]},
+        {"name": "Avoidance", "tags": ["NAV_DOG_STOPS_AT_EDGE", "NAV_DOG_STOPS_AT_OBSTACLE", "NAV_DOG_ARC_AROUND"]}
+      ],
+      "tags": {
+        "NAV_CURB_AHEAD": "Curb or edge where sidewalk meets street is visible in immediate path ahead",
+        "NAV_AT_CURB": "Team is positioned at curb edge (standing at the boundary between sidewalk and street)",
+        "NAV_STEPPING_UP": "Handler or dog stepping up onto elevated surface (curb, stairs, ramp going up)",
+        "NAV_STEPPING_DOWN": "Handler or dog stepping down from elevated surface (curb, stairs, ramp going down)",
+        "NAV_STAIRS_AHEAD": "Stairway (ascending or descending) visible in team's path or immediate vicinity",
+        "NAV_OBSTACLE_PRESENT": "Object requiring navigation around or past is in current location",
+        "NAV_NARROW_SPACE": "Team is currently in constrained passage requiring careful navigation",
+        "NAV_OPEN_SPACE": "Wide unobstructed area such as park, plaza, field, or large open sidewalk",
+        "NAV_AT_CROSSWALK": "Team positioned at the edge or start of a marked crosswalk",
+        "NAV_CROSSWALK_MARKINGS": "White painted zebra stripes or crosswalk lines visible on pavement",
+        "NAV_TRAFFIC_SIGNAL": "Traffic light or pedestrian signal visible in scene",
+        "NAV_WAITING_TO_CROSS": "Team stopped at intersection edge before crossing (not yet in roadway)",
+        "NAV_CROSSING_ACTIVE": "Team is currently in motion across the street or crosswalk",
+        "NAV_CROSSED_STREET": "Team has completed crossing and reached opposite side of street",
+        "NAV_DOG_STOPS_AT_EDGE": "Dog halts movement at curb edge, stairs, ramp, or elevation change",
+        "NAV_DOG_STOPS_AT_OBSTACLE": "Dog halts when path is blocked by object (pole, person, barrier, debris)",
+        "NAV_DOG_ARC_AROUND": "Dog creates curved path around obstacle rather than walking straight (smooth deviation visible)"
+      }
+    },
+    "dog_reaction_events": {
+      "label": "Dog Reaction Events",
+      "selection": "multi",
+      "validated": true,
+      "tags": {
+        "REACT_TO_PERSON_CLOSE": "Dog orients head or body toward person within 2 meters showing awareness",
+        "REACT_TO_PERSON_FAR": "Dog orients head or body toward person beyond 2 meters showing awareness",
+        "REACT_TO_DOG": "Dog orients head or body toward another dog, showing awareness or interest",
+        "REACT_TO_VEHICLE": "Dog shows awareness of vehicle through head turn, body shift, or attention change",
+        "REACT_TO_SOUND": "Dog responds to audible stimulus with head turn, ear shift, body startle, or attention redirect",
+        "ALERT_STANCE": "Dog in attentive stance: body upright, ears forward or perked, focused gaze, tail up",
+        "TRACKING_MOVEMENT": "Dog's head continuously follows moving person, animal, or object (head tracks motion)"
+      }
+    },
+    "handler_movement": {
+      "label": "Handler Movement",
+      "selection": "multi",
+      "validated": true,
+      "groups": [
+        {"name": "Movement", "tags": ["H_WALKING_FORWARD", "H_RUNNING", "H_STOPPED", "H_TURNING_LEFT", "H_TURNING_RIGHT", "H_BENDING_DOWN"]},
+        {"name": "Leash Management", "tags": ["H_PULLING_LEASH", "H_LOOSENING_LEASH", "H_HOLDING_LEASH_TAUT", "H_LEASH_IN_HAND"]},
+        {"name": "Handler Context", "tags": ["H_CARRYING_OBJECT", "H_PHONE_IN_HAND", "H_OPENING_DOOR", "H_TALKING_TO_PERSON"]}
+      ],
+      "tags": {
+        "H_WALKING_FORWARD": "Handler moving forward with walking gait",
+        "H_RUNNING": "Handler moving at jogging or running pace",
+        "H_STOPPED": "Handler is stationary, not taking steps",
+        "H_TURNING_LEFT": "Handler's body turning to the left (changing direction)",
+        "H_TURNING_RIGHT": "Handler's body turning to the right (changing direction)",
+        "H_BENDING_DOWN": "Handler bending at waist toward dog or ground level",
+        "H_PULLING_LEASH": "Handler actively pulling on leash to guide or redirect dog (arm extended, visible tension)",
+        "H_LOOSENING_LEASH": "Handler releasing tension from leash (arm moving to create slack)",
+        "H_HOLDING_LEASH_TAUT": "Handler maintaining steady tension in leash without pulling motion",
+        "H_LEASH_IN_HAND": "Handler is clearly holding the leash in their hand (leash visible in grip)",
+        "H_CARRYING_OBJECT": "Handler holding or carrying item (bag, phone, shopping bag, cup, backpack, etc.)",
+        "H_PHONE_IN_HAND": "Handler holding mobile phone in hand (visible in grip)",
+        "H_OPENING_DOOR": "Handler actively pushing or pulling a door open",
+        "H_TALKING_TO_PERSON": "Handler engaged in conversation with another person (facing person, mouth moving, social engagement)"
+      }
+    }
+  }
+}
