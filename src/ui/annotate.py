@@ -23,23 +23,30 @@ class AnnotateScreen(ttk.Frame):
         self.dirty = False
         self.section_widgets: dict[str, object] = {}
 
+        # Error paths below go back to the Todo screen *after* this constructor
+        # returns: calling show_todo() directly from inside the controller's
+        # _swap() would leave both this half-built screen and the new Todo
+        # screen packed in the container.
         try:
             self.doc = load_annotation(pair.ann_path)
         except Exception as exc:  # noqa: BLE001
             messagebox.showerror("Cannot open", f"Failed to read annotation:\n{exc}")
-            controller.show_todo()
+            controller.root.after_idle(controller.show_todo)
             return
         self.frames = get_frames(self.doc)
         if not self.frames:
             messagebox.showinfo("Empty", "This annotation has no frames.")
-            controller.show_todo()
+            controller.root.after_idle(controller.show_todo)
             return
 
         try:
             self.video = FrameSource(pair.vid_path)
+            # FrameSource opens lazily; open it now so a missing or unreadable
+            # video is reported here instead of escaping from _load_frame().
+            self.video.frame_count
         except VideoError as exc:
             messagebox.showerror("Video error", str(exc))
-            controller.show_todo()
+            controller.root.after_idle(controller.show_todo)
             return
 
         self._build_ui()
