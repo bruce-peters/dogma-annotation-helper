@@ -8,10 +8,21 @@ detections, and marks each video/annotation pair as reviewed.
 ## Install
 
 Requires Python 3.11+ with `tkinter` (bundled with the standard
-python.org Windows build).
+python.org Windows and macOS builds; on Debian/Ubuntu run
+`sudo apt install python3-tk`).
+
+Windows:
 
 ```
 py -m pip install -r requirements.txt
+```
+
+macOS / Linux (in a virtual environment):
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
 This installs `opencv-python` (frame extraction) and `Pillow` (rendering).
@@ -19,7 +30,8 @@ This installs `opencv-python` (frame extraction) and `Pillow` (rendering).
 ## Run
 
 ```
-py app.py
+py app.py          # Windows
+python app.py      # macOS / Linux, inside the venv
 ```
 
 1. **Home** – pick the annotations folder (`[#]_annotation.json`) and the videos
@@ -37,6 +49,30 @@ py app.py
      and distance are editable** in the side list (x/y are read-only).
    - `Ctrl+S` saves back to the JSON (key order and any unknown fields are
      preserved). **Mark pair as done** records progress in `progress.json`.
+
+### Annotation file format
+
+Each `[#]_annotation.json` holds a `frames` list (a bare top-level list also
+works). Per frame the app reads:
+
+- `frame_number`, `timestamp` – position in the source video (shown in the toolbar)
+- one key per taxonomy section (e.g. `environment`, `coarse_activity`) – a
+  string for single-select sections, a list of tags for multi-select ones
+- `objects_detected` – `[[x, y, label, "distance=…"], …]`
+- `description` (editable) and `transition` (shown read-only)
+
+Any other keys are left untouched on save.
+
+### Frame mapping and point calibration
+
+Datasets differ in how annotation entries line up with video frames, so the
+Annotate toolbar has a **Frame mapping** menu: `By frame_number` (seek to the
+entry's `frame_number`), `Sequential` (entry *n* = video frame *n*, for videos
+already downsampled to one frame per annotation), `Proportional` (spread the
+entries evenly across the clip) or `Auto` (picks one of those from the clip
+length). Above the frame, **Coord space** (`Video pixels`, `Normalized 0-1`,
+`Custom W×H`) and **Swap X/Y** fix detection points that land in the wrong
+place. All of these are remembered in `config.json`.
 
 ## The taxonomy
 
